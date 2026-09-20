@@ -24,8 +24,9 @@ export default function Navigation() {
       const sections = document.querySelectorAll('section[id], .project-category[id]');
       
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const htmlElement = section as HTMLElement;
+        const sectionTop = htmlElement.offsetTop;
+        const sectionHeight = htmlElement.offsetHeight;
         const sectionId = section.getAttribute('id');
 
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
@@ -35,7 +36,8 @@ export default function Navigation() {
 
       if (!activeSectionId) {
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
+          const htmlElement = section as HTMLElement;
+          const sectionTop = htmlElement.offsetTop;
           const distance = Math.abs(scrollPosition - sectionTop);
           if (distance < minDistance) {
             minDistance = distance;
